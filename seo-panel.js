@@ -46,7 +46,7 @@
     return urls.shift();
   }
 
-  function getEntityId(className) {
+  async function getEntityId(className) {
     const docText = await fetch(window.location).then(res => res.text());
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
