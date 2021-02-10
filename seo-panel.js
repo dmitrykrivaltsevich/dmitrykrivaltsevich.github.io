@@ -61,9 +61,9 @@
   const entityId = await getEntityId('re-data-el-init');
 
   var messages = [
-    `Title: ${getTagContent('title')}`,
+    `Title: ${getTagContent('title') || '🤷‍♂️'}`,
     `Description: ${getMetaTagContent('description') || '🤷‍♂️'}`,
-    `H1: ${getTagContent('h1').replaceAll('\n', ' ').replace(/\s+/g, ' ')}`,
+    `H1: ${(getTagContent('h1') || '🤷‍♂️').replaceAll('\n', ' ').replace(/\s+/g, ' ')}`,
     `Robots: ${getMetaTagContent('robots') || 'INDEX, FOLLOW'}`,
     `Canonical: ${getLinkHref('canonical') || '🤷‍♂️'}`,
     `FSA Entity ID: ${entityId || '🤷‍♂️'}`
