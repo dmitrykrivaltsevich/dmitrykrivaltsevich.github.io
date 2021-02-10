@@ -51,7 +51,7 @@
     const parser = new DOMParser();
     const doc = parser.parseFromString(docText, "text/html");
 
-    const tags = [...parser.getElementsByClassName(className)];
+    const tags = [...doc.getElementsByClassName(className)];
     const jsons = tags.map(tag => tag.innerText).map(text => JSON.parse(text));
     const entities = jsons.map(json => json['enrichedRootEntity'] || {});
     const ids = entities.map(entity => entity['id']).filter(id => id);
