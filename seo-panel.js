@@ -64,7 +64,7 @@
     `H1: ${getTagContent('h1').replaceAll('\n', ' ').replace(/\s+/g, ' ')}`,
     `Robots: ${getMetaTagContent('robots') || 'INDEX, FOLLOW'}`,
     `Canonical: ${getLinkHref('canonical') || '🤷‍♂️'}`,
-    `FSA Entity ID: ${getEntityId('re-data-el-init') || '🤷‍♂️'}`
+    `FSA Entity ID: ${getEntityId('re-data-el-init')}`
   ];
 
   var panel = document.createElement('div');
