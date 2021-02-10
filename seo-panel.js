@@ -31,7 +31,7 @@
   head.appendChild(style);
 
   function getTagContent(tagName) {
-    return document.getElementsByTagName(tagName)[0].innerText;
+    return [...document.getElementsByTagName(tagName)].map(tag => tag.innerText).shift();
   }
 
   function getMetaTagContent(metaName) {
