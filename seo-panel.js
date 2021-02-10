@@ -46,7 +46,7 @@
     return urls.shift();
   }
 
-  function getEntityId(className) {
+  async function getEntityId(className) {
     const docText = await fetch(window.location).then(res => res.text());
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
@@ -64,7 +64,7 @@
     `H1: ${getTagContent('h1').replaceAll('\n', ' ').replace(/\s+/g, ' ')}`,
     `Robots: ${getMetaTagContent('robots') || 'INDEX, FOLLOW'}`,
     `Canonical: ${getLinkHref('canonical') || '🤷‍♂️'}`,
-    `FSA Entity ID: ${getEntityId('re-data-el-init') || '🤷‍♂️'}`
+    `FSA Entity ID: ${await getEntityId('re-data-el-init') || '🤷‍♂️'}`
   ];
 
   var panel = document.createElement('div');
