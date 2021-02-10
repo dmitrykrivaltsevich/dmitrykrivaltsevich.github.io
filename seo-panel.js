@@ -47,7 +47,11 @@
   }
 
   function getEntityId(className) {
-    const tags = [...document.getElementsByClassName(className)];
+    const docText = await fetch(window.location).then(res => res.text());
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+
+    const tags = [...parser.getElementsByClassName(className)];
     const jsons = tags.map(tag => tag.innerText).map(text => JSON.parse(text));
     const entities = jsons.map(json => json['enrichedRootEntity'] || {});
     const ids = entities.map(entity => entity['id']).filter(id => id);
@@ -67,4 +71,3 @@
   panel.id = 'seo-panel';
   document.body.prepend(panel);
 })();
-
