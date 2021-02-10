@@ -49,7 +49,7 @@
   async function getEntityId(className) {
     const docText = await fetch(window.location).then(res => res.text());
     const parser = new DOMParser();
-    const doc = parser.parseFromString(html, "text/html");
+    const doc = parser.parseFromString(docText, "text/html");
 
     const tags = [...parser.getElementsByClassName(className)];
     const jsons = tags.map(tag => tag.innerText).map(text => JSON.parse(text));
@@ -58,13 +58,15 @@
     return ids.shift();
   }
 
+  const entityId = await getEntityId('re-data-el-init');
+
   var messages = [
     `Title: ${getTagContent('title')}`,
     `Description: ${getMetaTagContent('description') || '🤷‍♂️'}`,
     `H1: ${getTagContent('h1').replaceAll('\n', ' ').replace(/\s+/g, ' ')}`,
     `Robots: ${getMetaTagContent('robots') || 'INDEX, FOLLOW'}`,
     `Canonical: ${getLinkHref('canonical') || '🤷‍♂️'}`,
-    `FSA Entity ID: ${await getEntityId('re-data-el-init')}`
+    `FSA Entity ID: ${entityId}`
   ];
 
   var panel = document.createElement('div');
