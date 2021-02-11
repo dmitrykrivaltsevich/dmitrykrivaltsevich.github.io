@@ -77,6 +77,10 @@
     }
   }
 
+  function asLink(url) {
+    return `<a href="${url}">${url}</a>`;
+  }
+
   toggleView('seo-panel');
   display('Loading...', 'seo-panel');
 
@@ -86,7 +90,7 @@
     `Description: ${getMetaTagContent('description') || '🤷‍♂️'}`,
     `H1: ${(getTagContent('h1') || '🤷‍♂️').replaceAll('\n', ' ').replace(/\s+/g, ' ')}`,
     `Robots: ${getMetaTagContent('robots') || 'INDEX, FOLLOW'}`,
-    `Canonical: ${getLinkHref('canonical') || '🤷‍♂️'}`,
+    `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
     `FSA Entity ID: ${entityId || '🤷‍♂️'}`
   ];
   display(messages.join('<br>'), 'seo-panel');
