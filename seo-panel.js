@@ -58,9 +58,29 @@
     return ids.shift();
   }
 
-  const entityId = await getEntityId('re-data-el-init');
+  function toggleView(panelId) {
+    var panel = document.getElementById(panelId);
+    if (panel) {
+      panel.remove();
+    } else {
+      panel = document.createElement('div');
+      panel.id = panelId;
+      document.body.prepend(panel);
+    }
+  }
 
-  var messages = [
+  function display(message, panelId) {
+    const panel = document.getElementById(panelId);
+    if (panel) {
+      panel.innerHTML = message;
+    }
+  }
+
+  toggleView('seo-panel');
+  display('Loading...', 'seo-panel');
+
+  const entityId = await getEntityId('re-data-el-init');
+  const messages = [
     `Title: ${getTagContent('title') || '🤷‍♂️'}`,
     `Description: ${getMetaTagContent('description') || '🤷‍♂️'}`,
     `H1: ${(getTagContent('h1') || '🤷‍♂️').replaceAll('\n', ' ').replace(/\s+/g, ' ')}`,
@@ -68,9 +88,5 @@
     `Canonical: ${getLinkHref('canonical') || '🤷‍♂️'}`,
     `FSA Entity ID: ${entityId || '🤷‍♂️'}`
   ];
-
-  var panel = document.createElement('div');
-  panel.innerHTML = messages.join('<br>');
-  panel.id = 'seo-panel';
-  document.body.prepend(panel);
+  display(messages.join('<br>'), 'seo-panel');
 })();
