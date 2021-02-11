@@ -26,6 +26,14 @@
     #seo-panel a {
       color: green;
     }
+
+    #seo-panel .index {
+      color: green;
+    }
+
+    #seo-panel .noindex {
+      color: red;
+    }
   `;
 
   var style = document.createElement('style');
@@ -82,11 +90,11 @@
   }
 
   function asLink(url) {
-    if (url) {
-      return `<a href="${url}">${url}</a>`;
-    } else {
-      return url;
-    }
+    return url ? `<a href="${url}">${url}</a>` : url;
+  }
+
+  function colorize(text) {
+    return text.toLowerCase().includes('noindex') ? `<span class="noindex">${text}</span>` : `<span class="index">${text}</span>`
   }
 
   toggleView('seo-panel');
@@ -101,7 +109,7 @@
     `Title (${title ? title.length : 0}): ${title || '🤷‍♂️'}`,
     `Description (${description ? description.length : 0}): ${description || '🤷‍♂️'}`,
     `H1 (${h1 ? h1.length : 0}): ${h1 || '🤷‍♂️'}`,
-    `Robots: ${getMetaTagContent('robots') || 'INDEX, FOLLOW'}`,
+    `Robots: ${colorize(getMetaTagContent('robots') || 'INDEX, FOLLOW'})`,
     `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
     `FSA Entity ID: ${entityId || '🤷‍♂️'}`
   ];
