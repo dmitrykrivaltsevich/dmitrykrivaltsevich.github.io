@@ -93,10 +93,17 @@
   display('Loading...', 'seo-panel');
 
   const entityId = await getEntityId('re-data-el-init');
+  const title = getTagContent('title');
+  const description = getMetaTagContent('description');
+  const h1 = (getTagContent('h1') || '').replaceAll('\n', ' ').replace(/\s+/g, ' ');
+
   const messages = [
-    `Title: ${getTagContent('title') || '🤷‍♂️'}`,
-    `Description: ${getMetaTagContent('description') || '🤷‍♂️'}`,
-    `H1: ${(getTagContent('h1') || '🤷‍♂️').replaceAll('\n', ' ').replace(/\s+/g, ' ')}`,
+    `Title: ${title || '🤷‍♂️'}`,
+    `Title length: ${title ? title.length : 0}`,
+    `Description: ${description || '🤷‍♂️'}`,
+    `Description length: ${description ? description.length : 0}`,
+    `H1: ${h1 || '🤷‍♂️'}`,
+    `H1 length: ${h1 ? h1.length : 0}`,
     `Robots: ${getMetaTagContent('robots') || 'INDEX, FOLLOW'}`,
     `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
     `FSA Entity ID: ${entityId || '🤷‍♂️'}`
