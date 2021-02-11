@@ -20,6 +20,7 @@
       font: 12px/16px Menlo,Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
       animation: expand .1s ease-out;
       padding: 10px;
+      overflow: auto;
     }
   `;
 
