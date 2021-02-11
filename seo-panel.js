@@ -22,6 +22,10 @@
       padding: 10px;
       overflow: auto;
     }
+
+    #seo-panel a {
+      color: green;
+    }
   `;
 
   var style = document.createElement('style');
@@ -79,7 +83,7 @@
 
   function asLink(url) {
     if (url) {
-      return `<a href="${url}">${url}</a>`;  
+      return `<a href="${url}">${url}</a>`;
     } else {
       return url;
     }
