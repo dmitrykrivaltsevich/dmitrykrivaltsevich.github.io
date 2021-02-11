@@ -109,7 +109,7 @@
     `Title (${title ? title.length : 0}): ${title || '🤷‍♂️'}`,
     `Description (${description ? description.length : 0}): ${description || '🤷‍♂️'}`,
     `H1 (${h1 ? h1.length : 0}): ${h1 || '🤷‍♂️'}`,
-    `Robots: ${colorize(getMetaTagContent('robots') || 'INDEX, FOLLOW'})`,
+    `Robots: ${colorize(getMetaTagContent('robots') || 'INDEX, FOLLOW')}`,
     `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
     `FSA Entity ID: ${entityId || '🤷‍♂️'}`
   ];
