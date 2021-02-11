@@ -98,12 +98,9 @@
   const h1 = (getTagContent('h1') || '').replaceAll('\n', ' ').replace(/\s+/g, ' ');
 
   const messages = [
-    `Title: ${title || '🤷‍♂️'}`,
-    `Title length: ${title ? title.length : 0}`,
-    `Description: ${description || '🤷‍♂️'}`,
-    `Description length: ${description ? description.length : 0}`,
-    `H1: ${h1 || '🤷‍♂️'}`,
-    `H1 length: ${h1 ? h1.length : 0}`,
+    `Title (${title ? title.length : 0}): ${title || '🤷‍♂️'}`,
+    `Description (${description ? description.length : 0}): ${description || '🤷‍♂️'}`,
+    `H1 (${h1 ? h1.length : 0}): ${h1 || '🤷‍♂️'}`,
     `Robots: ${getMetaTagContent('robots') || 'INDEX, FOLLOW'}`,
     `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
     `FSA Entity ID: ${entityId || '🤷‍♂️'}`
