@@ -78,7 +78,11 @@
   }
 
   function asLink(url) {
-    return `<a href="${url}">${url}</a>`;
+    if (url) {
+      return `<a href="${url}">${url}</a>`;  
+    } else {
+      return url;
+    }
   }
 
   toggleView('seo-panel');
