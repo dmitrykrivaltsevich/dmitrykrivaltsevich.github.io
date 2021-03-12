@@ -34,6 +34,10 @@
     #seo-panel .noindex {
       color: red;
     }
+
+    #seo-panel details {
+      display: inline;
+    }
   `;
 
   var style = document.createElement('style');
