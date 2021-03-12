@@ -36,9 +36,10 @@
     }
 
     #seo-panel summary:after {
-      content: " + "; 
+      content: "+"; 
       float: left; 
-      text-align: center; 
+      text-align: center;
+      padding-right: 5px;
     }
     
     #seo-panel details[open] summary:after {
