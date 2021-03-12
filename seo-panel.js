@@ -123,7 +123,7 @@
     `H1 (${h1 ? h1.length : 0}): ${h1 || '🤷‍♂️'}`,
     `Robots: ${colorize(getMetaTagContent('robots') || 'INDEX, FOLLOW')}`,
     `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
-    `<details><summary>Links (${links.length})</summary><p>${links.join('<br/>')}</p></details>`,
+    `<details><summary>Links (${links.length})</summary><p>${links.map(link => asLink(link)).join('<br/>')}</p></details>`,
     `FSA Entity ID: ${entityId || '🤷‍♂️'}`
   ];
   display(messages.join('<br/>'), 'seo-panel');
