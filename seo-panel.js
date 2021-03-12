@@ -36,15 +36,13 @@
     }
 
     #seo-panel summary:after {
-      content: "+"; 
+      content: " + "; 
       float: left; 
-      font-size: 1.5em; 
-      font-weight: bold; 
       text-align: center; 
     }
     
     #seo-panel details[open] summary:after {
-      content: "-";
+      content: " - ";
     }
   `;
 
