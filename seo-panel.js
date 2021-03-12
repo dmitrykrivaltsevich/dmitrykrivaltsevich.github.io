@@ -35,27 +35,17 @@
       color: red;
     }
 
-    #seo-panel details {
-      display: inline;
-    }
-
     #seo-panel summary:after {
-      background: red; 
-      border-radius: 5px; 
       content: "+"; 
-      color: #fff; 
       float: left; 
       font-size: 1.5em; 
       font-weight: bold; 
-      margin: -5px 10px 0 0; 
-      padding: 0; 
       text-align: center; 
-      width: 20px;
     }
     
-   #seo-panel details[open] summary:after {
+    #seo-panel details[open] summary:after {
       content: "-";
-   }
+    }
   `;
 
   var style = document.createElement('style');
