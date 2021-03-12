@@ -43,7 +43,7 @@
     }
     
     #seo-panel details[open] summary:after {
-      content: " - ";
+      content: "-";
     }
   `;
 
