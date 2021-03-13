@@ -115,7 +115,7 @@
   const title = getTagContent('title');
   const description = getMetaTagContent('description');
   const h1 = (getTagContent('h1') || '').replaceAll('\n', ' ').replace(/\s+/g, ' ');
-  const links = [...document.links].map(a => `${a.textContent}: ${a.href}`).sort();
+  const links = [...document.links].map(a => `${a.textContent}: ${asLink(a.href)}`).sort();
 
   const messages = [
     `Title (${title ? title.length : 0}): ${title || '🤷‍♂️'}`,
@@ -123,7 +123,7 @@
     `H1 (${h1 ? h1.length : 0}): ${h1 || '🤷‍♂️'}`,
     `Robots: ${colorize(getMetaTagContent('robots') || 'INDEX, FOLLOW')}`,
     `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
-    `<details><summary>Links (${links.length})</summary><p>${links.map(link => asLink(link)).join('<br/>')}</p></details>`,
+    `<details><summary>Links (${links.length})</summary><p>${links.join('<br/>')}</p></details>`,
     `FSA Entity ID: ${entityId || '🤷‍♂️'}`
   ];
   display(messages.join('<br/>'), 'seo-panel');
