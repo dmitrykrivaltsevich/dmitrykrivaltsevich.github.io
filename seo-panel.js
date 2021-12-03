@@ -115,6 +115,7 @@
     requestUrl.search = new URLSearchParams(params).toString();
 
     const response = await fetch(requestUrl, {
+      mode: 'no-cors',
       headers: {
         'accept-language': 'de-DE',
         'x-sales-channel': '01924c48-49bb-40c2-9c32-ab582e6db6f4',
