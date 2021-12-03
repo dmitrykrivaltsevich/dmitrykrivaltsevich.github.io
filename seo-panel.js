@@ -47,11 +47,11 @@
     }
   `;
 
-  var style = document.createElement('style');
+  const style = document.createElement('style');
   style.type = 'text/css';
   style.appendChild(document.createTextNode(css));
 
-  var head = document.head || document.getElementsByTagName('head')[0];
+  const head = document.head || document.getElementsByTagName('head')[0];
   head.appendChild(style);
 
   function getTagContent(tagName) {
@@ -108,6 +108,28 @@
     return text.toLowerCase().includes('noindex') ? `<span class="noindex">${text}</span>` : `<span class="index">${text}</span>`
   }
 
+  async function getTemplates(url, entityId) {
+    const endpoint = 'https://stt-tars-production.fashion-store.zalan.do/seo-text';
+    const params = { uri: url, templates_only: true };
+    const requestUrl = new URL(endpoint);
+    requestUrl.search = new URLSearchParams(params).toString();
+
+    const response = await fetch(requestUrl, {
+      headers: {
+        'accept-language': 'de-DE',
+        'x-sales-channel': '01924c48-49bb-40c2-9c32-ab582e6db6f4',
+        'x-zalando-entity-id': entityId
+      }
+    });
+
+    const data = await response.json();
+    return {
+      title: data.title,
+      description: data.meta_description,
+      h1: 'not implemented yet'
+    }
+  }
+
   toggleView('seo-panel');
   display('Loading...', 'seo-panel');
 
@@ -116,11 +138,15 @@
   const description = getMetaTagContent('description');
   const h1 = (getTagContent('h1') || '').replaceAll('\n', ' ').replace(/\s+/g, ' ');
   const links = [...document.links].map(a => `${a.textContent}: ${asLink(a.href)}`).sort();
+  const templates = getTemplates(window.location.href, entityId);
 
   const messages = [
     `Title (${title ? title.length : 0}): ${title || '🤷‍♂️'}`,
+    `Title template: ${templates.title || '🤷‍♂️'}`,
     `Description (${description ? description.length : 0}): ${description || '🤷‍♂️'}`,
+    `Description template: ${templates.description || '🤷‍♂️'}`,
     `H1 (${h1 ? h1.length : 0}): ${h1 || '🤷‍♂️'}`,
+    `H1 template: ${templates.h1 || '🤷‍♂️'}`,
     `Robots: ${colorize(getMetaTagContent('robots') || 'INDEX, FOLLOW')}`,
     `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
     `<details><summary>Links (${links.length})</summary><p>${links.join('<br/>')}</p></details>`,
