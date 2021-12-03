@@ -123,6 +123,7 @@
     });
 
     const data = await response.json();
+    console.log(data);
     return {
       title: data.title,
       description: data.meta_description,
