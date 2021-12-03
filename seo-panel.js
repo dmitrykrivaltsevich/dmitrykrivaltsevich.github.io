@@ -115,7 +115,6 @@
     requestUrl.search = new URLSearchParams(params).toString();
 
     const response = await fetch(requestUrl, {
-      mode: 'no-cors',
       headers: {
         'accept-language': 'de-DE',
         'x-sales-channel': '01924c48-49bb-40c2-9c32-ab582e6db6f4',
@@ -140,15 +139,15 @@
   const description = getMetaTagContent('description');
   const h1 = (getTagContent('h1') || '').replaceAll('\n', ' ').replace(/\s+/g, ' ');
   const links = [...document.links].map(a => `${a.textContent}: ${asLink(a.href)}`).sort();
-  const templates = getTemplates(window.location.href, entityId);
+  // const templates = getTemplates(window.location.href, entityId);
 
   const messages = [
     `Title (${title ? title.length : 0}): ${title || '🤷‍♂️'}`,
-    `Title template: ${templates.title || '🤷‍♂️'}`,
+    // `Title template: ${templates.title || '🤷‍♂️'}`,
     `Description (${description ? description.length : 0}): ${description || '🤷‍♂️'}`,
-    `Description template: ${templates.description || '🤷‍♂️'}`,
+    // `Description template: ${templates.description || '🤷‍♂️'}`,
     `H1 (${h1 ? h1.length : 0}): ${h1 || '🤷‍♂️'}`,
-    `H1 template: ${templates.h1 || '🤷‍♂️'}`,
+    // `H1 template: ${templates.h1 || '🤷‍♂️'}`,
     `Robots: ${colorize(getMetaTagContent('robots') || 'INDEX, FOLLOW')}`,
     `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
     `<details><summary>Links (${links.length})</summary><p>${links.join('<br/>')}</p></details>`,
