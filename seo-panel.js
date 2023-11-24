@@ -137,7 +137,11 @@
   const entityId = await getEntityId('re-data-el-init');
   const title = getTagContent('title');
   const description = getMetaTagContent('description');
-  const h1 = (getTagContent('h1') || '').replaceAll('\n', ' ').replace(/\s+/g, ' ');
+  
+  // Modified code to get all h1 tags
+  const h1Tags = [...document.getElementsByTagName('h1')];
+  const h1Contents = h1Tags.map(tag => `<span>👉 ${tag.innerText}</span>`);
+  console.log(h1Tags);
   const links = [...document.links].map(a => `${a.textContent}: ${asLink(a.href)}`).sort();
   // const templates = getTemplates(window.location.href, entityId);
 
@@ -146,7 +150,8 @@
     // `Title template: ${templates.title || '🤷‍♂️'}`,
     `Description (${description ? description.length : 0}): ${description || '🤷‍♂️'}`,
     // `Description template: ${templates.description || '🤷‍♂️'}`,
-    `H1 (${h1 ? h1.length : 0}): ${h1 || '🤷‍♂️'}`,
+    `H1 (${h1Contents ? h1Contents.length : 0}): ${h1Contents || '🤷‍♂️'}`,
+    `H1 Duplicate : ${h1Tags.length > 1 ? 'Yes' : 'No'}`,
     // `H1 template: ${templates.h1 || '🤷‍♂️'}`,
     `Robots: ${colorize(getMetaTagContent('robots') || 'INDEX, FOLLOW')}`,
     `Canonical: ${asLink(getLinkHref('canonical')) || '🤷‍♂️'}`,
