@@ -131,8 +131,23 @@
     }
   }
 
+  function changeFavicon(isNotIndexable) {
+    var link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    if(isNotIndexable){
+      link.href = 'https://img.icons8.com/?size=96&id=Zyo5wDjgJxRW&format=png'; //red favicon
+    }else{
+      link.href = 'https://img.icons8.com/?size=96&id=FkQHNSmqWQWH&format=png'; //green favicon
+    }
+  }
+
   toggleView('seo-panel');
   display('Loading...', 'seo-panel');
+  changeFavicon((getMetaTagContent('robots') ?? "").toLowerCase().includes('noindex'));
 
   const entityId = await getEntityId('re-data-el-init');
   const title = getTagContent('title');
