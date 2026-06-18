@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google OR-Tools · Dmitry Krivaltsevich</title>
+<meta name="description" content="combinatorial optimization, AdWords, and a number with 360 digits">
+<link rel="preload" as="font" type="font/woff" href="/assets/fonts/cmunrm.woff" crossorigin>
+<link rel="stylesheet" href="/assets/theme.css">
+<script defer src="/assets/app.js"></script>
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="brand"><a href="/">Dmitry Krivaltsevich</a></div>
+  <button id="theme-toggle" aria-label="Switch to dark mode">☾</button>
+</header>
+<article>
+<h1>Google OR-Tools</h1>
+<p class="post-meta">June 22, 2019</p>
+<p>Today I learned about <a href="https://developers.google.com/optimization">Google OR-Tools</a>, an open-source suite for optimization: vehicle routing, flows, integer and linear programming, and constraint programming.</p>
+<p>What is a &quot;combinatorial optimization&quot; problem, anyway? Imagine you have €15,000 to spend on Google AdWords for a small business. Google hands you a table of keywords. You spend days picking three hundred or so that describe your business well, set a daily budget, and launch. Traffic arrives. But is the setup <em>optimal</em>? Are you getting the most clicks for your money?</p>
+<p>With around fifteen price levels per keyword (in reality, many more) and three hundred keywords, the number of combinations you would have to check is absurd:</p>
+<p class="bignum">67201306530145677691227706450599008677218833635331469498134353103850815627567935203598418279174424696301669832711078926054889744719967996576630443115841300927690884038379151711968495939730373490224964349010505512135479212699421321404087209170778595312054887078716487128925063696497496197915895863887572847552285583427877924123094999231398105621337890625</p>
+
+<p>You are not the first to face it, though. This is a classic of computer science, the <strong>Knapsack Problem</strong>, and OR-Tools will solve it efficiently for you, whether you write C++, Python, or a few other languages.</p>
+
+<nav class="page-nav">
+  <a class="prev" href="/why-i-started-this-blog/">← Why I Started This Blog</a>
+  <a class="next" href="/theory-of-computation-is-beautiful/">Theory of computation is beautiful →</a>
+</nav>
+</article>
+</div>
+</body>
+</html>

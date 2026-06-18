@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hourglass Model · Dmitry Krivaltsevich</title>
+<meta name="description" content="why a fatter waist layer can support fewer applications">
+<link rel="preload" as="font" type="font/woff" href="/assets/fonts/cmunrm.woff" crossorigin>
+<link rel="stylesheet" href="/assets/theme.css">
+<script defer src="/assets/app.js"></script>
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="brand"><a href="/">Dmitry Krivaltsevich</a></div>
+  <button id="theme-toggle" aria-label="Switch to dark mode">☾</button>
+</header>
+<article>
+<h1>The Hourglass Model</h1>
+<p class="post-meta">July 2, 2019</p>
+<p>Today I learned about the <em>Hourglass Model</em>. The argument is counter-intuitive: adding more functionality to the thin &quot;waist&quot; abstraction layer can <em>reduce</em> the number of applications that layer is able to support.</p>
+<p>For example, the functionality of NATed subnetworks limits the IP layer&#39;s ability to support peer-to-peer applications.<span class="sidenote">There is a connection here between the breaking of symmetry and the weakness of NAT, a network that can no longer treat every host as a first-class peer.</span> The more the waist assumes, the fewer the things that can be built on top of it.</p>
+<p>I had been using the orthogonality principle unconsciously, without a proper name for it, until I read this paper. It also pointed me to the <em>end-to-end argument</em>, a design principle about where to place function in a system that has guided network design for decades.<span class="sidenote">J. H. Saltzer, D. P. Reed, and D. D. Clark. &quot;End-to-End Arguments in System Design.&quot; 1984.</span></p>
+
+<nav class="page-nav">
+  <a class="prev" href="/theory-of-computation-is-beautiful/">← Theory of computation is beautiful</a>
+  <a class="next" href="/the-half-life-of-software/">The Half-life of Software →</a>
+</nav>
+</article>
+</div>
+</body>
+</html>

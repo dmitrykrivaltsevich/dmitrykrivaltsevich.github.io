@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>It Doesn't Work in Theory, but It Is All Right in Practice · Dmitry Krivaltsevich</title>
+<meta name="description" content="things impossible in theory that turn out fine in practice">
+<link rel="preload" as="font" type="font/woff" href="/assets/fonts/cmunrm.woff" crossorigin>
+<link rel="stylesheet" href="/assets/theme.css">
+<script defer src="/assets/app.js"></script>
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="brand"><a href="/">Dmitry Krivaltsevich</a></div>
+  <button id="theme-toggle" aria-label="Switch to dark mode">☾</button>
+</header>
+<article>
+<h1>It Doesn't Work in Theory, but It Is All Right in Practice</h1>
+<p class="post-meta">August 1, 2019</p>
+<p>I collect historical anecdotes about things that were impossible from a theoretical point of view, yet turned out to be quite achievable, and useful, in practice.</p>
+<p>There is a widespread belief that you cannot write a program that finds all the bugs in other programs. John MacCormick, in <em>What Can Be Computed?</em>, gives &quot;finding all bugs&quot; as a textbook example of an uncomputable problem: not computable in theory, and not in practice.<span class="sidenote">John MacCormick. <em>What Can Be Computed? A Practical Guide to the Theory of Computation.</em> Princeton University Press, 2018.</span> From theory, this is absolutely true. It is proven that no such program can be built, neither today nor in the future.</p>
+<p>However, this is only partially true in reality. What was actually proven is narrower: there is no way to predict whether an arbitrary program halts on a given input <em>by looking only at its source code</em>, for every possible program. In fact, programs that find bugs are not only possible to write; they already exist.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Tractable</strong></td>
+<td>Computable in theory and in practice.</td>
+</tr>
+<tr>
+<td><strong>Intractable</strong></td>
+<td>Computable in theory, but with no effective algorithm in practice (yet).</td>
+</tr>
+<tr>
+<td><strong>Uncomputable</strong></td>
+<td>Not computable in theory or in practice. Ever.</td>
+</tr>
+</tbody></table>
+<p>A note from my &quot;personal Google&quot; holds two quotes from <em>Communications of the ACM</em> about a tool called <strong>Terminator</strong>, which can quite often prove that a given program halts for any given input. &quot;Quite often&quot; here means often enough to be used in practice, at Microsoft.</p>
+<p class="pullquote">It doesn't work in theory, but it is all right in practice.<cite>the recurring shape of these anecdotes</cite></p>
+
+<p>Do you have other examples? I would love to hear about them.</p>
+
+<nav class="page-nav">
+  <a class="prev" href="/full-movie-in-one-shot/">← Full Movie In One Shot</a>
+  <a class="next" href="/-1e-33/">-1e-33 →</a>
+</nav>
+</article>
+</div>
+</body>
+</html>

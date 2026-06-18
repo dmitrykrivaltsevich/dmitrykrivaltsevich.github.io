@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Half-life of Software · Dmitry Krivaltsevich</title>
+<meta name="description" content="half of today's software leaves the market within four years">
+<link rel="preload" as="font" type="font/woff" href="/assets/fonts/cmunrm.woff" crossorigin>
+<link rel="stylesheet" href="/assets/theme.css">
+<script defer src="/assets/app.js"></script>
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="brand"><a href="/">Dmitry Krivaltsevich</a></div>
+  <button id="theme-toggle" aria-label="Switch to dark mode">☾</button>
+</header>
+<article>
+<h1>The Half-life of Software</h1>
+<p class="post-meta">July 3, 2019</p>
+<p>The half-life of software is the time required for half of the software developed today to disappear from the market. Today that half-life is four years, a number I found by analysing the lifetimes of more than 200 discontinued software products.</p>
+<p>We usually design software with an implicit assumption that it will live forever. Or, perhaps, ten or more years, which in our industry is a synonym for &quot;forever.&quot; The hard truth is that half of the software you write today will be gone from the market within the next four years.</p>
+<figure>
+<svg viewBox="0 0 700 384" role="img" aria-label="Histogram of the lifetimes of 200+ discontinued software products: right-skewed, with a median of four years." font-family="'CMU Serif', Georgia, serif" style="max-width:100%;height:auto">
+  <g fill="currentColor">
+    <rect x="60" y="206" width="32" height="122"/><rect x="99" y="67" width="32" height="261"/><rect x="139" y="32" width="32" height="296"/><rect x="178" y="67" width="32" height="261"/><rect x="217" y="136" width="32" height="192"/><rect x="257" y="189" width="32" height="139"/><rect x="296" y="223" width="32" height="105"/><rect x="335" y="250" width="32" height="78"/><rect x="374" y="258" width="32" height="70"/><rect x="414" y="276" width="32" height="52"/><rect x="453" y="284" width="32" height="44"/><rect x="492" y="293" width="32" height="35"/><rect x="532" y="302" width="32" height="26"/><rect x="571" y="311" width="32" height="17"/><rect x="610" y="311" width="32" height="17"/><rect x="650" y="284" width="32" height="44"/>
+  </g>
+  <line x1="60" y1="328" x2="682" y2="328" stroke="currentColor"/>
+  <line x1="194" y1="32" x2="194" y2="328" stroke="currentColor" stroke-dasharray="4 3" opacity="0.5"/>
+  <text x="194" y="24" text-anchor="middle" font-style="italic" font-size="13" fill="currentColor">median = 4 years</text>
+  <g fill="currentColor" opacity="0.55" font-size="12">
+    <text x="76" y="345" text-anchor="middle">1</text><text x="115" y="345" text-anchor="middle">2</text><text x="155" y="345" text-anchor="middle">3</text><text x="194" y="345" text-anchor="middle">4</text><text x="233" y="345" text-anchor="middle">5</text><text x="273" y="345" text-anchor="middle">6</text><text x="312" y="345" text-anchor="middle">7</text><text x="351" y="345" text-anchor="middle">8</text><text x="390" y="345" text-anchor="middle">9</text><text x="430" y="345" text-anchor="middle">10</text><text x="469" y="345" text-anchor="middle">11</text><text x="508" y="345" text-anchor="middle">12</text><text x="548" y="345" text-anchor="middle">13</text><text x="587" y="345" text-anchor="middle">14</text><text x="626" y="345" text-anchor="middle">15</text><text x="666" y="345" text-anchor="middle">16+</text>
+    <text x="371" y="375" text-anchor="middle" font-style="italic">lifetime (years)</text>
+    <text x="18" y="180" text-anchor="middle" font-style="italic" transform="rotate(-90 18 180)">number of products</text>
+  </g>
+</svg>
+<figcaption><strong>The lifetimes of 200+ discontinued software products.</strong> A right-skewed distribution with a median of four years.</figcaption>
+</figure>
+
+<p>There is an intriguing connection to Kruchten&#39;s hypothesis of a roughly five-year half-life of software-engineering ideas: concepts, tools, and methods.</p>
+<figure>
+  <img src="/assets/img/kruchten-half-life-ideas.png" alt="Philippe Kruchten, The Biological Half-Life of Software Engineering Ideas, IEEE Software 2008.">
+  <figcaption>Philippe Kruchten, "The Biological Half-Life of Software Engineering Ideas." <em>IEEE Software</em>, 2008.</figcaption>
+</figure>
+
+<p>An older IBM study went further still: application programs, on average, have a very short useful life of about fourteen months.</p>
+<figure>
+  <img src="/assets/img/leavitt-computerworld-1977.png" alt="Don Leavitt, Most Runs Have Short Useful Life, Research Indicates, Computerworld 1977.">
+  <figcaption>Don Leavitt, "Most Runs Have Short Useful Life, Research Indicates." <em>Computerworld</em>, July 25, 1977.</figcaption>
+</figure>
+
+<p class="pullquote">An installation's program load typically has a death rate of 7% a month, and the average program has a life expectancy of 14 months.<cite>Don Leavitt, Computerworld, 1977</cite></p>
+
+<div class="refs">
+<ol>
+<li>Philippe Kruchten. "The Biological Half-Life of Software Engineering Ideas." <em>IEEE Software</em>, 2008.</li>
+<li>Don Leavitt. "Most Runs Have Short Useful Life, Research Indicates." <em>Computerworld</em>, Vol. XI, No. 30, July 25, 1977, p. 21.</li>
+<li>Data sources: Wikipedia, <em>List of Discontinued Software</em>; <em>Killed by Google</em>.</li>
+</ol>
+</div>
+
+<nav class="page-nav">
+  <a class="prev" href="/the-hourglass-model/">← The Hourglass Model</a>
+  <a class="next" href="/full-movie-in-one-shot/">Full Movie In One Shot →</a>
+</nav>
+</article>
+</div>
+</body>
+</html>

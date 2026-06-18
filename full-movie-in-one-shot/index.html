@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Full Movie In One Shot · Dmitry Krivaltsevich</title>
+<meta name="description" content="stacking every frame of a film into a single long-exposure image">
+<link rel="preload" as="font" type="font/woff" href="/assets/fonts/cmunrm.woff" crossorigin>
+<link rel="stylesheet" href="/assets/theme.css">
+<script defer src="/assets/app.js"></script>
+</head>
+<body>
+<div class="page">
+<header class="masthead">
+  <div class="brand"><a href="/">Dmitry Krivaltsevich</a></div>
+  <button id="theme-toggle" aria-label="Switch to dark mode">☾</button>
+</header>
+<article>
+<h1>Full Movie In One Shot</h1>
+<p class="post-meta">July 7, 2019</p>
+<p>The Guardian once ran a piece on the photographer Jason Shulman, who captured the entire duration of a movie in a single image.<span class="sidenote"><em>Final cut: films condensed into a single frame, in pictures.</em> The Guardian, 16 May 2017.</span> Inspired by it, I decided to reproduce the result, but computationally.</p>
+<figure>
+  <img src="/assets/img/full-movie-guardian.png" alt="The Guardian gallery: Final cut, films condensed into a single frame.">
+  <figcaption>The Guardian piece that started it, on Jason Shulman's single-frame films.</figcaption>
+</figure>
+
+<p>Rather than expose film in front of a camera, I wrote a small Python program that stacks every frame of a video file into one picture. The effect is equivalent to a single shot with an ultra-long exposure of the whole film. The raw output is usually a near-grey rectangle and needs a little colour correction afterwards (some levels work in Gimp or Photoshop).</p>
+<figure>
+  <img src="/assets/img/full-movie-howls.jpg" alt="Howl's Moving Castle, every frame stacked into one image.">
+  <figcaption><strong>Howl's Moving Castle</strong>, Hayao Miyazaki.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/img/full-movie-matrix.jpg" alt="The Matrix Revolutions, every frame stacked into one image.">
+  <figcaption><strong>The Matrix Revolutions</strong>, Lana and Lilly Wachowski.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/img/full-movie-monsters.jpg" alt="Monsters, Inc, every frame stacked into one image.">
+  <figcaption><strong>Monsters, Inc</strong>, Pete Docter, David Silverman, and Lee Unkrich.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/img/full-movie-killbill.jpg" alt="Kill Bill: Vol. 2, every frame stacked into one image.">
+  <figcaption><strong>Kill Bill: Vol. 2</strong>, Quentin Tarantino.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/img/full-movie-darkknight.jpg" alt="The Dark Knight, every frame stacked into one image.">
+  <figcaption><strong>The Dark Knight</strong>, Christopher Nolan.</figcaption>
+</figure>
+
+<figure>
+  <img src="/assets/img/full-movie-walle.jpg" alt="WALL-E, every frame stacked into one image.">
+  <figcaption><strong>WALL·E</strong>, Andrew Stanton.</figcaption>
+</figure>
+
+<p>The whole thing is a few lines of OpenCV:</p>
+<pre><code class="language-python">import cv2
+import numpy as np
+import click
+from tqdm import tqdm
+
+@click.command()
+@click.argument(&quot;film&quot;)
+@click.argument(&quot;output_image&quot;)
+def convert(film, output_image):
+    &quot;&quot;&quot;Stack every frame of a video into a single picture.&quot;&quot;&quot;
+    capture = cv2.VideoCapture(film)
+    total = capture.get(cv2.CAP_PROP_FRAME_COUNT)
+    limit = int(total * 0.9)          # leave out the end titles
+    stacked, frames = None, 0
+    with tqdm(total=limit) as bar:
+        while capture.isOpened() and frames &lt; limit:
+            ok, frame = capture.read()
+            if not ok:
+                break
+            frame = frame.astype(np.float64)
+            stacked = frame if stacked is None else stacked + frame
+            frames += 1
+            bar.update(1)
+    stacked /= frames
+    cv2.imwrite(output_image, stacked.astype(np.uint8))
+    capture.release()
+
+if __name__ == &quot;__main__&quot;:
+    convert()
+</code></pre>
+
+<nav class="page-nav">
+  <a class="prev" href="/the-half-life-of-software/">← The Half-life of Software</a>
+  <a class="next" href="/theory-vs-practice/">It Doesn't Work in Theory, but It Is All Right in Practice →</a>
+</nav>
+</article>
+</div>
+</body>
+</html>

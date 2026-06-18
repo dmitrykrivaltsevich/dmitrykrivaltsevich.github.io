@@ -1,0 +1,242 @@
+/* ============================================================================
+   krivaltsevich.com — a quiet, Knuth-flavoured theme.
+   Computer Modern type, monochrome, generous margins, scholarly sidenotes.
+   Color appears only inside figures/diagrams (functional), never in the prose.
+   ========================================================================== */
+
+/* ---- Computer Modern (self-hosted, CMU Serif + CMU Typewriter) ----------- */
+@font-face { font-family: "CMU Serif"; font-style: normal; font-weight: 400;
+  src: url("fonts/cmunrm.woff") format("woff"); font-display: swap; }
+@font-face { font-family: "CMU Serif"; font-style: italic; font-weight: 400;
+  src: url("fonts/cmunti.woff") format("woff"); font-display: swap; }
+@font-face { font-family: "CMU Serif"; font-style: normal; font-weight: 700;
+  src: url("fonts/cmunbx.woff") format("woff"); font-display: swap; }
+@font-face { font-family: "CMU Serif"; font-style: italic; font-weight: 700;
+  src: url("fonts/cmunbi.woff") format("woff"); font-display: swap; }
+@font-face { font-family: "CMU Typewriter"; font-style: normal; font-weight: 400;
+  src: url("fonts/cmuntt.woff") format("woff"); font-display: swap; }
+@font-face { font-family: "CMU Typewriter"; font-style: normal; font-weight: 700;
+  src: url("fonts/cmuntb.woff") format("woff"); font-display: swap; }
+
+/* ---- Tokens -------------------------------------------------------------- */
+:root {
+  --serif: "CMU Serif", "Latin Modern Roman", Georgia, "Times New Roman", serif;
+  --mono:  "CMU Typewriter", "Latin Modern Mono", "SF Mono", "Consolas", monospace;
+
+  --paper:    #f6f6f6;   /* neutral paper-white, not cream */
+  --ink:      #1b1b1a;   /* near-black, neutral */
+  --ink-soft: #5e5e5c;   /* captions, meta, secondary */
+  --rule:     #d9d9d7;   /* hairlines */
+  --mark:     #ececec;   /* faint highlight for inline code */
+  --shade:    #eeeeee;   /* code block / table */
+  /* paper grain: desaturated fractal noise on a tile sized to two primes
+     (251x257) so the pattern never visibly repeats. Kept very faint. */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='251' height='257'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+
+  --measure: 32rem;      /* text column width (~64 chars) */
+  --gutter:  16rem;      /* right margin reserved for sidenotes/figures */
+  --page:    min(92%, calc(var(--measure) + var(--gutter) + 6rem));
+
+  --fs: 1.28rem;         /* CM runs light/small; nudge up */
+  --lh: 1.62;
+}
+[data-theme="dark"] {
+  --paper:    #18191c;   /* neutral charcoal, not warm */
+  --ink:      #e6e6e4;
+  --ink-soft: #9a9a98;
+  --rule:     #34353a;
+  --mark:     #26272b;
+  --shade:    #202126;
+}
+
+/* ---- Base ---------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; color: var(--ink);
+  background-color: var(--paper);
+  background-image: var(--noise);
+  background-size: 251px 257px;       /* native tile size = the prime dims */
+  font-family: var(--serif); font-size: var(--fs); line-height: var(--lh);
+  font-feature-settings: "liga" 1, "onum" 1;
+  text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased;
+}
+::selection { background: #d9e8ff; }
+[data-theme="dark"] ::selection { background: #2b3a57; }
+
+/* ---- Page frame & header ------------------------------------------------- */
+.page { width: var(--page); margin: 0 auto; padding: 2.2rem 0 5rem; }
+.masthead {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1.5rem; flex-wrap: wrap; padding-bottom: .9rem;
+  border-bottom: 1px solid var(--rule); margin-bottom: 2.6rem;
+}
+.masthead .brand { font-size: 1.18rem; font-style: italic; letter-spacing: .01em; }
+.masthead .brand a { color: inherit; text-decoration: none; border: 0; }
+.masthead nav { display: flex; gap: 1.35rem; align-items: baseline; }
+.masthead nav a {
+  color: var(--ink-soft); text-decoration: none; border: 0;
+  font-variant: small-caps; letter-spacing: .06em; font-size: 1.02rem;
+}
+.masthead nav a:hover, .masthead nav a[aria-current="page"] { color: var(--ink); }
+#theme-toggle {
+  font-family: var(--serif); font-size: 1.05rem; line-height: 1;
+  background: none; border: 0; color: var(--ink-soft); cursor: pointer; padding: 0 .1rem;
+}
+#theme-toggle:hover { color: var(--ink); }
+
+/* ---- Content column ------------------------------------------------------ */
+article { position: relative; }
+article > * { max-width: var(--measure); }
+/* full-bleed-ish blocks that may use the right margin */
+article > figure.fullwidth, article > .fullwidth { max-width: calc(var(--measure) + var(--gutter)); }
+
+p { margin: 0 0 1.1rem; hyphens: auto; }
+p + p { margin-top: -.15rem; text-indent: 1.3em; }   /* book-style paragraph flow */
+.lead, p.lead { text-indent: 0; }
+:is(h1,h2,h3) + p, blockquote + p, figure + p, ul + p, ol + p, table + p, pre + p { text-indent: 0; }
+
+a {
+  color: inherit; text-decoration: underline;
+  text-decoration-thickness: .06em; text-underline-offset: .12em;
+  text-decoration-color: var(--rule);
+}
+a:hover { text-decoration-color: var(--ink); }
+
+/* ---- Headings ------------------------------------------------------------ */
+h1, h2, h3, h4 { font-weight: 700; line-height: 1.15; margin: 2.4rem 0 .8rem; }
+h1 { font-size: 2.15rem; font-weight: 400; margin-top: 0; letter-spacing: -.01em; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; font-weight: 400; font-style: italic; }
+.post-meta { color: var(--ink-soft); font-style: italic; margin: -.4rem 0 2rem; }
+.post-meta a { text-decoration-color: var(--rule); }
+
+/* ---- Lists, rules, quotes ------------------------------------------------ */
+ul, ol { margin: 0 0 1.1rem; padding-left: 1.4rem; }
+li { margin: .25rem 0; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 2.4rem 0; max-width: var(--measure); }
+
+blockquote {
+  margin: 1.6rem 0; padding-left: 1.1rem; border-left: 2px solid var(--rule);
+  color: var(--ink); font-style: italic;
+}
+blockquote p { margin-bottom: .5rem; }
+.pullquote {
+  border: 0; text-align: center; font-style: italic; font-size: 1.35rem;
+  line-height: 1.4; margin: 2.2rem auto; padding: 0 1rem; max-width: 28rem;
+}
+.pullquote cite { display: block; font-size: .8em; font-style: normal;
+  color: var(--ink-soft); margin-top: .6rem; font-variant: small-caps; letter-spacing: .05em; }
+
+/* ---- Sidenotes & margin figures (the scholarly margin) ------------------- */
+.sidenote, .marginnote {
+  float: right; clear: right;
+  width: var(--gutter); margin-right: calc(-1 * var(--gutter) - 1.5rem);
+  font-size: .92rem; line-height: 1.4; color: var(--ink-soft);
+  position: relative; vertical-align: baseline;
+}
+.sidenote-ref { font-variant: normal; }
+sup.sidenote-ref { font-size: .7em; padding: 0 .12em; }
+figure.margin {
+  float: right; clear: right; width: var(--gutter);
+  margin: .4rem calc(-1 * var(--gutter) - 1.5rem) 1rem 0;
+}
+figure.margin img { width: 100%; }
+
+/* ---- Figures & images ---------------------------------------------------- */
+figure { margin: 1.8rem 0; }
+figure img, p img { max-width: 100%; height: auto; display: block; }
+figure img { margin: 0 auto; }
+figure.fullwidth img { width: 100%; }
+figure.portrait img { max-width: 15rem; }   /* tall images (book covers, posters) stay modest */
+figcaption { font-size: .92rem; color: var(--ink-soft); line-height: 1.4; margin-top: .6rem; }
+figcaption strong { color: var(--ink); font-weight: 700; }
+
+/* ---- Tables -------------------------------------------------------------- */
+table { border-collapse: collapse; margin: 1.6rem 0; font-size: .98rem; width: auto; }
+th, td { text-align: left; padding: .4rem 1.1rem .4rem 0; vertical-align: top; }
+thead th { border-bottom: 1.5px solid var(--ink); font-weight: 700; }
+tbody tr + tr td { border-top: 1px solid var(--rule); }
+table.figure caption, figure > table + figcaption { color: var(--ink-soft); }
+
+/* ---- Code ---------------------------------------------------------------- */
+code, kbd, samp { font-family: var(--mono); font-size: .92em; }
+:not(pre) > code { background: var(--mark); padding: .05em .35em; border-radius: 3px; }
+pre {
+  font-family: var(--mono); font-size: .92rem; line-height: 1.45;
+  background: var(--shade); border: 1px solid var(--rule); border-radius: 4px;
+  padding: .9rem 1.1rem; overflow-x: auto; margin: 1.5rem 0;
+  max-width: calc(var(--measure) + 6rem);
+}
+pre code { background: none; padding: 0; }
+.bignum { font-family: var(--mono); font-size: .8rem; line-height: 1.5; color: var(--ink-soft);
+  word-break: break-all; margin: 1.3rem 0; padding: .8rem 1rem; background: var(--shade);
+  border-radius: 4px; max-width: var(--measure); }
+
+/* ---- Math (KaTeX) -------------------------------------------------------- */
+.katex { font-size: 1.06em; }
+.katex-display { margin: 1.4rem 0; overflow-x: auto; overflow-y: hidden; }
+
+/* ---- Footnote-style references ------------------------------------------- */
+.refs { font-size: .95rem; color: var(--ink-soft); border-top: 1px solid var(--rule);
+  margin-top: 3rem; padding-top: 1rem; max-width: var(--measure); }
+.refs ol { padding-left: 1.2rem; }
+.refs li { margin: .4rem 0; }
+
+/* ---- Home / hero + the "wall" of writings -------------------------------- */
+.hero { text-align: center; padding: 3.4rem 0 2rem; }
+.hero h1 { font-size: 2.7rem; font-style: italic; font-weight: 700; margin: 0; }
+.hero .rule { width: 4rem; height: 2px; background: var(--ink); margin: 1rem auto 0; }
+.hero p { text-indent: 0; color: var(--ink-soft); max-width: 30rem; margin: 1.4rem auto 0; }
+.wall { max-width: var(--measure); margin: 1.9rem auto 0; }
+.writings { list-style: none; margin: 0 0 1.6rem; padding: 0; }
+.writings li { margin: 0 0 1.2rem; }
+.writings .t { display: block; font-size: 1.18rem; line-height: 1.3; color: var(--ink); text-decoration: none; }
+.writings .t:hover { text-decoration: underline; text-decoration-thickness: .05em; text-underline-offset: .14em; text-decoration-color: var(--ink); }
+.writings .g { display: block; margin-top: .12rem; padding-left: 1.15rem; font-style: italic; color: var(--ink-soft); font-size: .97rem; line-height: 1.34; }
+.home-foot { max-width: var(--measure); margin: 2.6rem auto 0; padding-top: 1rem;
+  border-top: 1px solid var(--rule); font-size: .92rem; }
+.home-foot a { color: var(--ink-soft); }
+.home-foot a:hover { color: var(--ink); }
+
+/* ---- Post / article listing --------------------------------------------- */
+.listing { max-width: var(--measure); }
+.listing h1 { margin-bottom: 1.8rem; }
+.entry { margin: 0 0 1.7rem; }
+.entry .t { font-size: 1.22rem; }
+.entry .t a { text-decoration: none; }
+.entry .t a:hover { text-decoration: underline; text-decoration-color: var(--ink); }
+.entry .d { color: var(--ink-soft); font-style: italic; font-size: .95rem; margin-top: .1rem; }
+.entry .s { color: var(--ink); margin-top: .25rem; }
+.year-sep { font-variant: small-caps; letter-spacing: .1em; color: var(--ink-soft);
+  border-bottom: 1px solid var(--rule); margin: 2.2rem 0 1.2rem; padding-bottom: .2rem; }
+
+/* ---- Prev / next & footer ------------------------------------------------ */
+.page-nav { display: flex; justify-content: space-between; gap: 1rem;
+  max-width: var(--measure); margin: 3.5rem 0 0; border-top: 1px solid var(--rule); padding-top: 1rem; }
+.page-nav a { color: var(--ink-soft); text-decoration: none; font-style: italic; }
+.page-nav a:hover { color: var(--ink); }
+.site-footer { max-width: var(--measure); margin-top: 4rem; padding-top: 1rem;
+  border-top: 1px solid var(--rule); color: var(--ink-soft); font-size: .9rem; }
+.site-footer a { color: inherit; }
+
+/* ---- Responsive: collapse the margin column ------------------------------ */
+@media (max-width: 860px) {
+  :root { --fs: 1.18rem; }
+  .page { width: 90%; }
+  article > *, .refs, .listing, .wall, .page-nav, .site-footer, hr { max-width: 100%; }
+  p + p { text-indent: 1.2em; }
+  .sidenote, .marginnote, figure.margin {
+    float: none; width: auto; margin: 1rem 0; padding: .7rem 0 .7rem 1rem;
+    border-left: 2px solid var(--rule); display: block;
+  }
+  figure.margin { padding-left: 0; border: 0; }
+}
+
+/* ---- Print --------------------------------------------------------------- */
+@media print {
+  :root { --paper: #fff; --ink: #000; }
+  .masthead nav, #theme-toggle, .page-nav { display: none; }
+  .sidenote, .marginnote { color: #333; }
+  a { text-decoration: none; }
+}
